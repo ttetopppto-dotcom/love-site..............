@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لأجمل بنوته في الدنيا 🤭♥</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+
+body{
+background:linear-gradient(180deg,#120012,#1b001b,#000);
+overflow-x:hidden;
+color:white;
+text-align:center;
+min-height:100vh;
+position:relative;
+}
+
+.bg-slider{
+position:fixed;inset:0;z-index:-2;
+background:radial-gradient(circle at top,#ff4f9555,#000),
+radial-gradient(circle at bottom,#ff008055,#000);
+filter:blur(20px);
+}
+
+.stars,.hearts{position:fixed;inset:0;}
+
+.star{
+position:absolute;width:2px;height:2px;background:white;
+animation:blink 2s infinite;
+}
+
+@keyframes blink{50%{opacity:.3;}}
+
+.heart{
+position:absolute;bottom:-50px;color:#ff4f95;
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:0;}
+20%{opacity:.7;}
+100%{transform:translateY(-120vh);opacity:0;}
+}
+
+/* باسورد */
+#passwordScreen{
+position:fixed;inset:0;background:black;
+display:flex;justify-content:center;align-items:center;
+z-index:1000;
+}
+
+.pass-box{
+background:#111;padding:30px;border-radius:25px;
+box-shadow:0 0 30px rgba(255,0,120,.4);
+}
+
+input{
+padding:15px;border-radius:15px;border:none;margin-top:10px;
+}
+
+button{
+background:#ff4f95;color:white;border:none;
+padding:10px 20px;border-radius:15px;margin-top:15px;
+cursor:pointer;
+}
+
+/* المحتوى */
+.container{display:none;padding:20px;}
+
+.main-title{
+font-size:40px;color:#ff4f95;margin-top:20px;
+}
+
+.typewriter{margin-top:20px;line-height:2;}
+
+.gallery img{
+width:100%;border-radius:20px;margin-top:15px;
+}
+
+.counter-box{margin-top:30px;}
+
+.time-box{
+margin:10px;
+padding:10px;
+border:1px solid #ff4f95;
+border-radius:15px;
+}
+
+.secret-message,#hiddenText{
+display:none;
+margin-top:20px;
+}
+
+.footer{margin-top:40px;}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg-slider"></div>
+<div class="stars"></div>
+<div class="hearts"></div>
+
+<!-- باسورد -->
+<div id="passwordScreen">
+<div class="pass-box">
+<h2>ادخلي الباسورد 🤭♥</h2>
+<input type="password" id="password">
+<br>
+<button onclick="checkPassword()">فتح ♥</button>
+</div>
+</div>
+
+<!-- المحتوى -->
+<div class="container" id="mainContent">
+
+<!-- 🎧 الصوت -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<h1 class="main-title">لأجمل بنوته في الدنيا 🤭♥</h1>
+
+<div id="typewriter" class="typewriter"></div>
+
+<!-- صور -->
+<div class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+</div>
+
+<!-- عداد -->
+<div class="counter-box">
+<div id="counter"></div>
+</div>
+
+<!-- رسالة -->
+<button onclick="showSecret()">اضغطي هنا ❤️</button>
+<div class="secret-message" id="secretMessage">
+أنا بحبك ومش هسيبك ❤️
+</div>
+
+<!-- رسالة مخفية -->
+<div onclick="showHidden()">سر ❤️</div>
+<div id="hiddenText">بحبك للأبد ❤️</div>
+
+<div class="footer">Made with love ❤️</div>
+
+</div>
+
+<script>
+
+/* باسورد */
+function checkPassword(){
+let pass=document.getElementById("password").value;
+
+if(pass==="love"){
+document.getElementById("passwordScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+
+/* تشغيل الصوت */
+document.getElementById("bgMusic").play().catch(()=>{});
+
+startTyping();
+}else{
+alert("غلط 😑");
+}
+}
+
+/* كتابة */
+const text="بحبك اوي ونفسي نفضل مع بعض ❤️";
+let i=0;
+
+function startTyping(){
+function typing(){
+if(i<text.length){
+document.getElementById("typewriter").innerHTML+=text[i];
+i++;
+setTimeout(typing,50);
+}}
+typing();
+}
+
+/* رسالة */
+function showSecret(){
+document.getElementById("secretMessage").style.display="block";
+}
+
+function showHidden(){
+document.getElementById("hiddenText").style.display="block";
+}
+
+/* عداد */
+const startDate=new Date("2025-03-19");
+
+setInterval(()=>{
+let now=new Date();
+let diff=now-startDate;
+let days=Math.floor(diff/(1000*60*60*24));
+document.getElementById("counter").innerHTML=
+`<div class="time-box">${days} يوم ❤️</div>`;
+},1000);
+
+/* قلوب */
+for(let i=0;i<40;i++){
+let h=document.createElement('div');
+h.className='heart';
+h.innerHTML='♥';
+h.style.left=Math.random()*100+'%';
+h.style.animationDuration=(4+Math.random()*4)+'s';
+document.querySelector('.hearts').appendChild(h);
+}
+
+/* نجوم */
+for(let i=0;i<120;i++){
+let s=document.createElement('div');
+s.className='star';
+s.style.left=Math.random()*100+'%';
+s.style.top=Math.random()*100+'%';
+document.querySelector('.stars').appendChild(s);
+}
+
+/* حل تشغيل الصوت للموبايل */
+document.addEventListener("click",()=>{
+document.getElementById("bgMusic").play().catch(()=>{});
+},{once:true});
+
+</script>
+
+</body>
+</html>
